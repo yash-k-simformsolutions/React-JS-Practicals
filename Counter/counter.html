@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>React JS basics</title>
+  </head>
+  <body>
+    <h1>Use of State and Props in React!</h1>
+    <div id="count"></div>
+
+    <script type="text/babel">
+      function Counter(props) {
+        const handleClick = () => props.counterFunction(props.increment);
+        return (
+          <button onClick={handleClick}>Counter +{props.increment}</button>
+        );
+      }
+
+      function Display(props) {
+        return <div>{props.displayCounter}</div>;
+      }
+
+      function App() {
+        const [counter, setCounter] = React.useState(0);
+        const incrementCounter = (incrementValue) =>
+          setCounter(counter + incrementValue);
+        return (
+          <div>
+            <Counter counterFunction={incrementCounter} increment={10} />
+            <Counter counterFunction={incrementCounter} increment={20} />
+            <Counter counterFunction={incrementCounter} increment={30} />
+            <Counter counterFunction={incrementCounter} increment={40} />
+            <Display displayCounter={counter} />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById("count"));
+    </script>
+  </body>
+</html>
